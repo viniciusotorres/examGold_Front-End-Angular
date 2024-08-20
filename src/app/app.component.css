@@ -1,0 +1,38 @@
+.dark-mode {
+  background-color: rgba(18, 18, 18, 0.79);
+  color: white;
+}
+
+.light-mode {
+  background-color: white !important;;
+  color: black !important;
+}
+
+.side-nav {
+  width: 170px;
+  border-radius: 0px;
+  box-shadow: 3px 0 15px rgba(0, 0, 0, 0.5); /* Adiciona sombra e profundidade */
+}
+
+.side-nav.dark-mode {
+  background: #030434 !important;
+  color: white !important;
+}
+
+.side-nav.light-mode {
+  background: #091fe1 !important;
+  color: black !important;
+}
+
+.subtitulo {
+  font-size: 0.7rem;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.bi {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
