@@ -1,6 +1,4 @@
-![image](https://github.com/user-attachments/assets/06a45639-c1c8-46cf-ba5e-1767afcd0b45)# EM CONSTRUÇÃO...
-
-# PROCESSOS
+# EM CONSTRUÇÃO...
 
 # TELA DE LOGIN
 
