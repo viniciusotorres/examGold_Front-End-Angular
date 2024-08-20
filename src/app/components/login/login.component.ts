@@ -7,6 +7,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {NotificationService} from "../../services/notification.service";
 import {Router} from "@angular/router";
+import {SharedsService} from "../../services/shareds.service";
 
 @Component({
   selector: 'app-login',
@@ -20,11 +21,13 @@ export class LoginComponent {
   emailTouched: boolean = false;
   password: string= '';
   passwordTouched: boolean = false;
+  idUser: number = 0;
 
   constructor(
     private authService: AuthService,
     private noticationService: NotificationService,
-    private router: Router) { }
+    private router: Router,
+    private sharedsService: SharedsService) { }
 
   ngOnInit() {}
 
@@ -38,6 +41,8 @@ export class LoginComponent {
     this.authService.login(user).subscribe(
       (data: any) => {
         console.log(data);
+        this.idUser = data.id;
+        this.sharedsService.setUserId(this.idUser);
         localStorage.setItem('token', data.token);
         this.noticationService.showNotification('Login efetuado com sucesso');
         this.router.navigate(['/home']);

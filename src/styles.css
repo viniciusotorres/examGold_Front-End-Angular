@@ -2,3 +2,13 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body.dark-mode {
+  background-color: #504949;
+  color: white;
+}
+
+body.light-mode {
+  background-color: #b6b6b6;
+  color: black;
+}
