@@ -1,0 +1,76 @@
+<div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
+  <form class="w-100 d-flex flex-column align-items-center">
+    <img src="https://media.istockphoto.com/id/1291909119/pt/vetorial/celtic-symbol-trinity-knot.jpg?s=612x612&w=0&k=20&c=GF-ye7FwnCPVulJxO_kBDhsZembr5QPdEleLQykVnyw=" alt="logo" class="img mb-3">
+    <p><b>VELSTAND COMPANY</b></p>
+    <div class="form-group col-12 col-md-6 col-lg-4">
+      <label>Nome Completo:</label>
+      <input
+        type="text"
+        class="form-control input"
+        [(ngModel)]="name"
+        name="name"
+        (focus)="nameTouched = true"
+        [ngClass]="{'invalid-input': !validateName() && nameTouched}"
+        placeholder="Seu nome completo">
+      <small *ngIf="!validateName() && nameTouched" class="text-danger subtitulo">Nome inválido.</small>
+    </div>
+
+    <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
+      <label>Data de Nascimento:</label>
+      <input
+        type="text"
+        class="form-control input"
+        [(ngModel)]="birthDate"
+        name="birthDate"
+        (focus)="birthDateTouched = true"
+        [ngClass]="{'invalid-input': !validateBirthDate() && birthDateTouched}"
+        placeholder="Data do seus nascimento">
+      <small *ngIf="!validateBirthDate() && birthDateTouched" class="text-danger subtitulo">Data de nascimento inválida.</small>
+    </div>
+
+    <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
+      <label>E-mail:</label>
+      <input
+        type="text"
+        class="form-control input"
+        [(ngModel)]="email"
+        name="email"
+        (focus)="emailTouched = true"
+        [ngClass]="{'invalid-input': !validateEmail() && emailTouched}"
+        placeholder="Seu e-mail">
+      <small *ngIf="!validateEmail() && emailTouched" class="text-danger subtitulo">E-mail inválido.</small>
+    </div>
+
+    <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
+      <label>Senha:</label>
+      <input
+        type="password"
+        name="password"
+        class="form-control input"
+        [(ngModel)]="password"
+        (focus)="passwordTouched = true"
+        [ngClass]="{'invalid-input': !validatePassword() && passwordTouched}"
+        placeholder="Digite sua senha">
+      <small *ngIf="!validatePassword() && passwordTouched" class="text-danger subtitulo">Senha inválida.</small>
+    </div>
+
+    <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
+      <label>Confirme sua Senha:</label>
+      <input
+        type="password"
+        name="passwordConfirm"
+        class="form-control input"
+        [(ngModel)]="passwordConfirm"
+        (focus)="passwordConfirmTouched = true"
+        [disabled]="!validatePassword()"
+        [ngClass]="{'invalid-input': !comparePasswords() && passwordConfirmTouched}"
+        placeholder="Confirme sua senha">
+      <small *ngIf="!comparePasswords() && passwordConfirmTouched" class="text-danger subtitulo">As senhas não coincidem.</small>
+    </div>
+
+    <div class="d-flex justify-content-between col-12 col-md-6 col-lg-4 mt-3">
+      <button class="btn btn-primary btns" (click)="navigateToLogin()">Entrar</button>
+      <button class="btn btn-secondary btns" (click)="registrar()" [disabled]="!comparePasswords() || !validateEmail() || !validateName() || !validateBirthDate()">Cadastrar</button>
+    </div>
+  </form>
+</div>
