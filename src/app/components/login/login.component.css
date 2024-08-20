@@ -1,0 +1,22 @@
+.invalid-input{
+  border: 1px solid red !important;
+}
+
+.subtitulo {
+  font-size: 0.700rem;
+}
+
+.input {
+  border: 1px solid black !important;
+}
+
+.img {
+  width: 5rem;
+  height: auto;
+}
+
+.btns {
+  border: 1px solid black !important;
+  background: white !important;
+  color:  black !important;
+}
