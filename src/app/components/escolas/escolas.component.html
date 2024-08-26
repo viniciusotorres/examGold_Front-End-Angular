@@ -1,0 +1,74 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="justify-content-between d-flex mt-2">
+        <p>Escolas</p>
+        <div>
+          <button class="btn btn-primary" (click)="navegarParaEscolas()">Escolas</button>
+          <button class="btn btn-danger" (click)="navegarParaCadastro()">Cadastrar</button>
+        </div>
+      </div>
+      @switch (tela){
+        @case ('cadastrar'){
+          <div class="card-header">
+            Cadastrar Escola
+          </div>
+          <div class="card-body">
+            <form (submit)="salvarEscola()">
+              <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" class="form-control" id="name" [(ngModel)]="name" name="name">
+              </div>
+              <div class="form-group">
+                <label for="address">Endereço</label>
+                <input type="text" class="form-control" id="address" [(ngModel)]="address" name="address">
+              </div>
+              <div class="form-group">
+                <label for="phone">Telefone</label>
+                <input type="text" class="form-control" id="phone" [(ngModel)]="phone" name="phone">
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email">
+              </div>
+              <div class="form-group">
+                <label for="cnpj">CNPJ</label>
+                <input type="text" class="form-control" id="cnpj" [(ngModel)]="cnpj" name="cnpj">
+              </div>
+              <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+          </div>
+
+        }
+
+
+        @case ('escolas')  {
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Endereço</th>
+                <th>Telefone</th>
+                <th>Opções</th>
+              </tr>
+              </thead>
+              <tbody>
+                @for (escola of escolas; track $index){
+                  <tr >
+                    <td>{{ escola.name }}</td>
+                    <td>{{ escola.address }}</td>
+                    <td>{{ escola.phone }}</td>
+                    <td>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+      }
+
+    </div>
+  </div>
+</div>
