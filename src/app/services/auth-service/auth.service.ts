@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../../enviroments/environments";
-import {UserInterface} from "../interfaces/user.interface";
+import {environment} from "../../../enviroments/environments";
+import {UserInterface} from "../../interfaces/user.interface";
 
 
 @Injectable({
@@ -24,6 +24,10 @@ export class AuthService {
   //--> REQUISIÇÃO DE CADASTRO
   register(user: UserInterface){
     return this.http.post(`${this.api}/auth/register`, user);
+  }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
   }
 
 }

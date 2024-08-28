@@ -1,7 +1,7 @@
 import {Component, HostListener} from '@angular/core';
 import {Router} from "@angular/router";
-import {SharedsService} from "../../services/shareds.service";
-import {UsersService} from "../../services/users.service";
+import {SharedsService} from "../../services/shareds-service/shareds.service";
+import {UsersService} from "../../services/users-service/users.service";
 
 @Component({
   selector: 'app-home',

@@ -1,0 +1,82 @@
+<!-- DIV DO MENU -->
+<div class="d-flex flex-column align-items-center side-bar">
+
+  <!-- DIV DA HOME -->
+  <div
+    (click)="navigateTo('home')"
+    (mouseenter)="onHover('home')"
+    (mouseleave)="onLeaveIcon('home')"
+    #homeIcon>
+    <i class="bi bi-house tamanho-dos-icones"></i>
+  </div>
+
+  <!-- HOVER DA HOME -->
+  @if (isHoveredHome) {
+    <div (mouseenter)="onEnterHover()" (mouseleave)="onLeave('home')"
+         class="hover-home position-fixed text-start  rounded"
+         [style.top.px]="hoverHomePosition.top">
+      <p class="subtitulo">Home</p>
+
+    </div>
+  }
+
+  <!-- DIV DAS ESCOLAS -->
+  <div class="mt-5"
+       (click)="navigateTo('escolas')"
+       (mouseenter)="onHover('escolas')"
+       (mouseleave)="onLeaveIcon('escolas')"
+       #escolasIcon>
+    <i class="bi bi-buildings tamanho-dos-icones"></i>
+  </div>
+
+  <!-- HOVER DA ESCOLAS -->
+  @if (isHoveredEscolas) {
+    <div (mouseenter)="onEnterHover()" (mouseleave)="onLeave('escola')"
+         class="hover-home position-fixed text-start  rounded"
+         [style.top.px]="hoverEscolasPosition.top">
+      <p class="subtitulo">Escolas</p>
+
+    </div>
+  }
+
+  <!-- DIV DO DARKTHEME -->
+  <div class="mt-5"
+       (click)="toggleDarkMode()"
+       (mouseenter)="onHover('darktheme')"
+       (mouseleave)="onLeaveIcon('darktheme')"
+       #darkThemeIcon>
+    <i [class]="getThemeIcon() + ' tamanho-dos-icones cursor-pointer'"></i>
+  </div>
+
+  <!-- HOVER DO DARKTHEME -->
+  @if (isHoveredDarkTheme) {
+    <div (mouseenter)="onEnterHover()" (mouseleave)="onLeave('darktheme')"
+         class="hover-home position-fixed text-start  rounded"
+         [style.top.px]="hoverDarkThemePosition.top">
+      <p class="subtitulo">Dark Theme</p>
+
+    </div>
+  }
+
+
+  <!-- DIV DOS LOGOUT -->
+  <div class="mt-5"
+       (click)="logout()"
+       (mouseenter)="onHover('logout')"
+       (mouseleave)="onLeaveIcon('logout')"
+       #logoutIcon>
+    <i class="bi bi-door-open-fill tamanho-dos-icones"></i>
+  </div>
+
+  <!-- HOVER DA LOGOUT -->
+  @if (isHoveredLogout) {
+    <div (mouseenter)="onEnterHover()" (mouseleave)="onLeave('logout')"
+         class="hover-home position-fixed text-start  rounded"
+         [style.top.px]="hoverLogoutPosition.top">
+      <p class="subtitulo">Logout</p>
+
+    </div>
+  }
+
+</div>
+

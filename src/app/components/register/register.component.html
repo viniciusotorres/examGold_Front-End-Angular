@@ -1,7 +1,14 @@
 <div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
   <form class="w-100 d-flex flex-column align-items-center">
-    <img src="https://media.istockphoto.com/id/1291909119/pt/vetorial/celtic-symbol-trinity-knot.jpg?s=612x612&w=0&k=20&c=GF-ye7FwnCPVulJxO_kBDhsZembr5QPdEleLQykVnyw=" alt="logo" class="img mb-3">
-    <p><b>VELSTAND COMPANY</b></p>
+
+    <!-- -------------------------------------------------------------------------- -->
+    <!--                          FORM HEADER                                       -->
+    <!-- -------------------------------------------------------------------------- -->
+    <p><b>EXAME DE OURO</b></p>
+
+    <!-- -------------------------------------------------------------------------- -->
+    <!--                          NAME FIELD                                        -->
+    <!-- -------------------------------------------------------------------------- -->
     <div class="form-group col-12 col-md-6 col-lg-4">
       <label>Nome Completo:</label>
       <input
@@ -15,6 +22,9 @@
       <small *ngIf="!validateName() && nameTouched" class="text-danger subtitulo">Nome inválido.</small>
     </div>
 
+    <!-- -------------------------------------------------------------------------- -->
+    <!--                          BIRTH DATE FIELD                                  -->
+    <!-- -------------------------------------------------------------------------- -->
     <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
       <label>Data de Nascimento:</label>
       <input
@@ -28,6 +38,9 @@
       <small *ngIf="!validateBirthDate() && birthDateTouched" class="text-danger subtitulo">Data de nascimento inválida.</small>
     </div>
 
+    <!-- -------------------------------------------------------------------------- -->
+    <!--                          EMAIL FIELD                                       -->
+    <!-- -------------------------------------------------------------------------- -->
     <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
       <label>E-mail:</label>
       <input
@@ -41,6 +54,21 @@
       <small *ngIf="!validateEmail() && emailTouched" class="text-danger subtitulo">E-mail inválido.</small>
     </div>
 
+    <!-- -------------------------------------------------------------------------- -->
+    <!--                          SCHOOL FIELD                                      -->
+    <!-- -------------------------------------------------------------------------- -->
+    <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
+      <label>Escola:</label>
+      <select class="form-control input" [(ngModel)]="schollId" name="school">
+        @for (escola of escolas; track $index){
+          <option [value]="escola.id">{{escola.name}}</option>
+        }
+      </select>
+    </div>
+
+    <!-- -------------------------------------------------------------------------- -->
+    <!--                          PASSWORD FIELD                                    -->
+    <!-- -------------------------------------------------------------------------- -->
     <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
       <label>Senha:</label>
       <input
@@ -54,6 +82,9 @@
       <small *ngIf="!validatePassword() && passwordTouched" class="text-danger subtitulo">Senha inválida.</small>
     </div>
 
+    <!-- -------------------------------------------------------------------------- -->
+    <!--                          CONFIRM PASSWORD FIELD                            -->
+    <!-- -------------------------------------------------------------------------- -->
     <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
       <label>Confirme sua Senha:</label>
       <input
@@ -68,6 +99,9 @@
       <small *ngIf="!comparePasswords() && passwordConfirmTouched" class="text-danger subtitulo">As senhas não coincidem.</small>
     </div>
 
+    <!-- -------------------------------------------------------------------------- -->
+    <!--                          FORM BUTTONS                                      -->
+    <!-- -------------------------------------------------------------------------- -->
     <div class="d-flex justify-content-between col-12 col-md-6 col-lg-4 mt-3">
       <button class="btn btn-primary btns" (click)="navigateToLogin()">Entrar</button>
       <button class="btn btn-secondary btns" (click)="registrar()" [disabled]="!comparePasswords() || !validateEmail() || !validateName() || !validateBirthDate()">Cadastrar</button>

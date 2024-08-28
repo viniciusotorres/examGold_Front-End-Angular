@@ -1,27 +1,27 @@
 import { Injectable } from '@angular/core';
-import {environment} from "../../enviroments/environments";
+import {environment} from "../../../enviroments/environments";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
-  private api = environment.apiJava;
+export class EscolaService {
+
+  private api = environment.apiJava + '/school'
 
   constructor(
     private http: HttpClient
   ) { }
 
   //--> REQUISIÇÃO DE BUSCAR TODOS
-  getUsers(){
-    return this.http.get(`${this.api}/users`);
+  getEscolas(){
+    return this.http.get(`${this.api}/all`);
   }
 
-  //--> REQUISIÇÃO DE BUSCAR POR ID
-  getUserById(id: number){
+  //--> REQUISIÇÃO DE SALVAR
+  salvarEscola(escola: any){
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get(`${this.api}/user/${id}`, { headers });
+    return this.http.post(`${this.api}/create`, escola , { headers });
   }
-
 }
