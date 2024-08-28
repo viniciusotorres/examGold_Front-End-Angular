@@ -1,33 +1,69 @@
+/* -------------------------------------------------------------------------- */
+/*                          THEME STYLES                                      */
+/* -------------------------------------------------------------------------- */
 .dark-mode {
   background-color: rgba(18, 18, 18, 0.79);
   color: white;
 }
 
 .light-mode {
-  background-color: white !important;;
+  background-color: white !important;
   color: black !important;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                          SIDE NAV STYLES                                   */
+/* -------------------------------------------------------------------------- */
 .side-nav {
-  width: 170px;
+  width: 60px;
   border-radius: 0px;
   box-shadow: 3px 0 15px rgba(0, 0, 0, 0.5); /* Adiciona sombra e profundidade */
 }
 
 .side-nav.dark-mode {
-  background: #030434 !important;
-  color: white !important;
+  background: black !important;
+  color: rgb(249 106 0 / 95%) !important;
 }
 
 .side-nav.light-mode {
-  background: #091fe1 !important;
+  background: rgb(249 106 0 / 95%) !important;
   color: black !important;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                          HOVER STYLES                                      */
+/* -------------------------------------------------------------------------- */
+.hover-home {
+  left: 63px;
+  top: 30%;
+  width: 19rem;
+  background: #856700;
+  height: 6rem;
+  opacity: 0.97;
+  padding: 7px;
+  transition: opacity 0.7s ease;
+}
+
+.hover-home.dark-mode {
+  background: black !important;
+  color: rgb(249 106 0 / 95%) !important;
+}
+
+.hover-home.light-mode {
+  background: rgb(249 106 0 / 95%) !important;
+  color: black !important;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                          TEXT STYLES                                       */
+/* -------------------------------------------------------------------------- */
 .subtitulo {
   font-size: 0.7rem;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                          CURSOR STYLES                                     */
+/* -------------------------------------------------------------------------- */
 .cursor-pointer {
   cursor: pointer;
 }
@@ -35,4 +71,26 @@
 .bi {
   font-size: 1.5rem;
   cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                          MENU STYLES                                       */
+/* -------------------------------------------------------------------------- */
+.menu {
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 3px 0 15px rgba(0, 0, 0, 0.5); /* Adiciona sombra e profundidade */
+}
+
+/* -------------------------------------------------------------------------- */
+/*                          SIDEBAR STYLES                                    */
+/* -------------------------------------------------------------------------- */
+.container-principal {
+  height: 100vh;
+  max-height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
+  overflow: hidden;
+  box-sizing: border-box;
 }

@@ -1,15 +1,2 @@
-<mat-drawer-container class="example-container h-100" [ngClass]="{'dark-mode': isDarkMode, 'light-mode': !isDarkMode}">
-  <mat-drawer class="side-nav d-flex flex-column text-center" mode="side" #drawer opened>
-    <div class="d-flex flex-column flex-grow-1">
-      <p class=" subtitulo"><b>VELSTAND COMPANY</b></p>
-      <p class=" subtitulo">Olá, {{name}}!</p>
-    </div>
-    <div class="d-flex mt-auto text-center justify-content-center align-items-center">
-      <i class="bi" [ngClass]="isDarkMode ? 'bi-toggle2-on' : 'bi-toggle2-off'" (click)="toggleDarkMode()"></i>
-      <i class="bi bi-door-closed cursor-pointer" (click)="logout()"></i>
-    </div>
-  </mat-drawer>
-  <mat-drawer-content>
-    <router-outlet></router-outlet>
-  </mat-drawer-content>
-</mat-drawer-container>
+<router-outlet></router-outlet>
+

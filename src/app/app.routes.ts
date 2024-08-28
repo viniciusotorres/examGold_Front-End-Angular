@@ -7,7 +7,7 @@ import {EscolasComponent} from "./components/escolas/escolas.component";
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'login',
     component: LoginComponent,
 
   },

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {EscolaService} from "../../services/escola.service";
+import {EscolaService} from "../../services/escola-service/escola.service";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import {NotificationService} from "../../services/notification.service";
+import {NotificationService} from "../../services/notification-service/notification.service";
 
 @Component({
   selector: 'app-escolas',

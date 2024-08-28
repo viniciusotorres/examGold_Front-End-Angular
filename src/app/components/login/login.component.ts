@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import {AuthService} from "../../services/auth.service";
+import {AuthService} from "../../services/auth-service/auth.service";
 import {UserInterface} from "../../interfaces/user.interface";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-import {NotificationService} from "../../services/notification.service";
+import {NotificationService} from "../../services/notification-service/notification.service";
 import {Router} from "@angular/router";
-import {SharedsService} from "../../services/shareds.service";
+import {SharedsService} from "../../services/shareds-service/shareds.service";
 
 @Component({
   selector: 'app-login',
