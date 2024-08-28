@@ -28,6 +28,7 @@ birthDate: string = '';
 birthDateTouched: boolean = false;
 escolas: any = [];
 schollId!: number;
+itsTeacher: string = 'teacher';
 
   constructor(
     private router: Router,
@@ -42,19 +43,22 @@ schollId!: number;
 
   //--> Método para registrar o usuário
   registrar(){
+
     const dados = {
       name: this.name,
       email: this.email,
       password: this.password,
       birthDate: this.birthDate,
-      schollId: +this.schollId
+      schollId: +this.schollId,
+      itsTeacher: this.itsTeacher === 'teacher'
+
     }
 
     this.authService.register(dados).subscribe(
       (data: any) => {
         console.log(data);
         this.noticationService.showNotification('Cadastro efetuado com sucesso');
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
       },
       (error: any) => {
         this.noticationService.showNotification('Erro ao cadastrar');
@@ -96,6 +100,19 @@ schollId!: number;
     );
 
     }
+
+  transformTeacher(){
+    this.itsTeacher = 'student';
+
+
+  }
+
+  transformStudent() {
+
+    this.itsTeacher = 'teacher';
+
+  }
+
 
 
 

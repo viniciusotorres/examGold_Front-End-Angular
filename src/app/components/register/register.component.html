@@ -1,110 +1,242 @@
-<div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
-  <form class="w-100 d-flex flex-column align-items-center">
+<!-- DIV PAI -->
+<div class="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center">
+  <!-- -------------------------------------------------------------------------- -->
+  <!--                          FORM HEADER                                       -->
+  <!-- -------------------------------------------------------------------------- -->
+  <p><b>EXAME DE OURO</b></p>
 
-    <!-- -------------------------------------------------------------------------- -->
-    <!--                          FORM HEADER                                       -->
-    <!-- -------------------------------------------------------------------------- -->
-    <p><b>EXAME DE OURO</b></p>
+  <!-- DIV DAS OPÇÕES DE LOGIN -->
+  <div class="form-group col-12 col-md-6 col-lg-2 d-flex justify-content-between opcoes">
+    <div (click)="transformTeacher()" class="cursor-pointer col-6 text-center"
+         [ngClass]="{'active': itsTeacher === 'student', 'inactive': itsTeacher !== 'student'}">Aluno</div>
+    <div (click)="transformStudent()" class="cursor-pointer col-6 text-center"
+         [ngClass]="{'active': itsTeacher === 'teacher', 'inactive': itsTeacher !== 'teacher'}">Professor</div>
+  </div>
 
-    <!-- -------------------------------------------------------------------------- -->
-    <!--                          NAME FIELD                                        -->
-    <!-- -------------------------------------------------------------------------- -->
-    <div class="form-group col-12 col-md-6 col-lg-4">
-      <label>Nome Completo:</label>
-      <input
-        type="text"
-        class="form-control input"
-        [(ngModel)]="name"
-        name="name"
-        (focus)="nameTouched = true"
-        [ngClass]="{'invalid-input': !validateName() && nameTouched}"
-        placeholder="Seu nome completo">
-      <small *ngIf="!validateName() && nameTouched" class="text-danger subtitulo">Nome inválido.</small>
-    </div>
+  @switch (itsTeacher){
 
-    <!-- -------------------------------------------------------------------------- -->
-    <!--                          BIRTH DATE FIELD                                  -->
-    <!-- -------------------------------------------------------------------------- -->
-    <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
-      <label>Data de Nascimento:</label>
-      <input
-        type="text"
-        class="form-control input"
-        [(ngModel)]="birthDate"
-        name="birthDate"
-        (focus)="birthDateTouched = true"
-        [ngClass]="{'invalid-input': !validateBirthDate() && birthDateTouched}"
-        placeholder="Data do seus nascimento">
-      <small *ngIf="!validateBirthDate() && birthDateTouched" class="text-danger subtitulo">Data de nascimento inválida.</small>
-    </div>
+    @case ('teacher') {
+      <form class="w-100 d-flex flex-column align-items-center">
 
-    <!-- -------------------------------------------------------------------------- -->
-    <!--                          EMAIL FIELD                                       -->
-    <!-- -------------------------------------------------------------------------- -->
-    <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
-      <label>E-mail:</label>
-      <input
-        type="text"
-        class="form-control input"
-        [(ngModel)]="email"
-        name="email"
-        (focus)="emailTouched = true"
-        [ngClass]="{'invalid-input': !validateEmail() && emailTouched}"
-        placeholder="Seu e-mail">
-      <small *ngIf="!validateEmail() && emailTouched" class="text-danger subtitulo">E-mail inválido.</small>
-    </div>
+        <!-- -------------------------------------------------------------------------- -->
+        <!--                          FORM HEADER                                       -->
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="mt-3">
+        <p><b>ESTAMOS ANIMADOS POR TER VOCÊ PROFESSOR!</b></p>
+        </div>
+        <!-- -------------------------------------------------------------------------- -->
+        <!--                          NAME FIELD                                        -->
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="form-group col-12 col-md-6 col-lg-4">
+          <label>Nome Completo:</label>
+          <input
+            type="text"
+            class="form-control input"
+            [(ngModel)]="name"
+            name="name"
+            (focus)="nameTouched = true"
+            [ngClass]="{'invalid-input': !validateName() && nameTouched}"
+            placeholder="Seu nome completo">
+          <small *ngIf="!validateName() && nameTouched" class="text-danger subtitulo">Nome inválido.</small>
+        </div>
 
-    <!-- -------------------------------------------------------------------------- -->
-    <!--                          SCHOOL FIELD                                      -->
-    <!-- -------------------------------------------------------------------------- -->
-    <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
-      <label>Escola:</label>
-      <select class="form-control input" [(ngModel)]="schollId" name="school">
-        @for (escola of escolas; track $index){
-          <option [value]="escola.id">{{escola.name}}</option>
-        }
-      </select>
-    </div>
+        <!-- -------------------------------------------------------------------------- -->
+        <!--                          BIRTH DATE FIELD                                  -->
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
+          <label>Data de Nascimento:</label>
+          <input
+            type="text"
+            class="form-control input"
+            [(ngModel)]="birthDate"
+            name="birthDate"
+            (focus)="birthDateTouched = true"
+            [ngClass]="{'invalid-input': !validateBirthDate() && birthDateTouched}"
+            placeholder="Data do seus nascimento">
+          <small *ngIf="!validateBirthDate() && birthDateTouched" class="text-danger subtitulo">Data de nascimento inválida.</small>
+        </div>
 
-    <!-- -------------------------------------------------------------------------- -->
-    <!--                          PASSWORD FIELD                                    -->
-    <!-- -------------------------------------------------------------------------- -->
-    <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
-      <label>Senha:</label>
-      <input
-        type="password"
-        name="password"
-        class="form-control input"
-        [(ngModel)]="password"
-        (focus)="passwordTouched = true"
-        [ngClass]="{'invalid-input': !validatePassword() && passwordTouched}"
-        placeholder="Digite sua senha">
-      <small *ngIf="!validatePassword() && passwordTouched" class="text-danger subtitulo">Senha inválida.</small>
-    </div>
+        <!-- -------------------------------------------------------------------------- -->
+        <!--                          EMAIL FIELD                                       -->
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
+          <label>E-mail:</label>
+          <input
+            type="text"
+            class="form-control input"
+            [(ngModel)]="email"
+            name="email"
+            (focus)="emailTouched = true"
+            [ngClass]="{'invalid-input': !validateEmail() && emailTouched}"
+            placeholder="Seu e-mail">
+          <small *ngIf="!validateEmail() && emailTouched" class="text-danger subtitulo">E-mail inválido.</small>
+        </div>
 
-    <!-- -------------------------------------------------------------------------- -->
-    <!--                          CONFIRM PASSWORD FIELD                            -->
-    <!-- -------------------------------------------------------------------------- -->
-    <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
-      <label>Confirme sua Senha:</label>
-      <input
-        type="password"
-        name="passwordConfirm"
-        class="form-control input"
-        [(ngModel)]="passwordConfirm"
-        (focus)="passwordConfirmTouched = true"
-        [disabled]="!validatePassword()"
-        [ngClass]="{'invalid-input': !comparePasswords() && passwordConfirmTouched}"
-        placeholder="Confirme sua senha">
-      <small *ngIf="!comparePasswords() && passwordConfirmTouched" class="text-danger subtitulo">As senhas não coincidem.</small>
-    </div>
+        <!-- -------------------------------------------------------------------------- -->
+        <!--                          SCHOOL FIELD                                      -->
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
+          <label>Escola:</label>
+          <select class="form-control input" [(ngModel)]="schollId" name="school">
+            @for (escola of escolas; track $index){
+              <option [value]="escola.id">{{escola.name}}</option>
+            }
+          </select>
+        </div>
 
-    <!-- -------------------------------------------------------------------------- -->
-    <!--                          FORM BUTTONS                                      -->
-    <!-- -------------------------------------------------------------------------- -->
-    <div class="d-flex justify-content-between col-12 col-md-6 col-lg-4 mt-3">
-      <button class="btn btn-primary btns" (click)="navigateToLogin()">Entrar</button>
-      <button class="btn btn-secondary btns" (click)="registrar()" [disabled]="!comparePasswords() || !validateEmail() || !validateName() || !validateBirthDate()">Cadastrar</button>
-    </div>
-  </form>
+        <!-- -------------------------------------------------------------------------- -->
+        <!--                          PASSWORD FIELD                                    -->
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
+          <label>Senha:</label>
+          <input
+            type="password"
+            name="password"
+            class="form-control input"
+            [(ngModel)]="password"
+            (focus)="passwordTouched = true"
+            [ngClass]="{'invalid-input': !validatePassword() && passwordTouched}"
+            placeholder="Digite sua senha">
+          <small *ngIf="!validatePassword() && passwordTouched" class="text-danger subtitulo">Senha inválida.</small>
+        </div>
+
+        <!-- -------------------------------------------------------------------------- -->
+        <!--                          CONFIRM PASSWORD FIELD                            -->
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
+          <label>Confirme sua Senha:</label>
+          <input
+            type="password"
+            name="passwordConfirm"
+            class="form-control input"
+            [(ngModel)]="passwordConfirm"
+            (focus)="passwordConfirmTouched = true"
+            [disabled]="!validatePassword()"
+            [ngClass]="{'invalid-input': !comparePasswords() && passwordConfirmTouched}"
+            placeholder="Confirme sua senha">
+          <small *ngIf="!comparePasswords() && passwordConfirmTouched" class="text-danger subtitulo">As senhas não coincidem.</small>
+        </div>
+
+        <!-- -------------------------------------------------------------------------- -->
+        <!--                          FORM BUTTONS                                      -->
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="d-flex justify-content-between col-12 col-md-6 col-lg-4 mt-3">
+          <button class="btn btn-primary btns" (click)="navigateToLogin()">Entrar</button>
+          <button class="btn btn-secondary btns" (click)="registrar()" [disabled]="!comparePasswords() || !validateEmail() || !validateName() || !validateBirthDate()">Cadastrar</button>
+        </div>
+      </form>
+    }
+
+    @case ('student') {
+      <form class="w-100 d-flex flex-column align-items-center">
+        <!-- -------------------------------------------------------------------------- -->
+        <!--                          FORM HEADER                                       -->
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="mt-3">
+          <p><b>ESTAMOS ANIMADOS POR TER VOCÊ ALUNO!</b></p>
+        </div>
+        <!-- -------------------------------------------------------------------------- -->
+        <!--                          NAME FIELD                                        -->
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="form-group col-12 col-md-6 col-lg-4">
+          <label>Nome Completo:</label>
+          <input
+            type="text"
+            class="form-control input"
+            [(ngModel)]="name"
+            name="name"
+            (focus)="nameTouched = true"
+            [ngClass]="{'invalid-input': !validateName() && nameTouched}"
+            placeholder="Seu nome completo">
+          <small *ngIf="!validateName() && nameTouched" class="text-danger subtitulo">Nome inválido.</small>
+        </div>
+
+        <!-- -------------------------------------------------------------------------- -->
+        <!--                          BIRTH DATE FIELD                                  -->
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
+          <label>Data de Nascimento:</label>
+          <input
+            type="text"
+            class="form-control input"
+            [(ngModel)]="birthDate"
+            name="birthDate"
+            (focus)="birthDateTouched = true"
+            [ngClass]="{'invalid-input': !validateBirthDate() && birthDateTouched}"
+            placeholder="Data do seus nascimento">
+          <small *ngIf="!validateBirthDate() && birthDateTouched" class="text-danger subtitulo">Data de nascimento inválida.</small>
+        </div>
+
+        <!-- -------------------------------------------------------------------------- -->
+        <!--                          EMAIL FIELD                                       -->
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
+          <label>E-mail:</label>
+          <input
+            type="text"
+            class="form-control input"
+            [(ngModel)]="email"
+            name="email"
+            (focus)="emailTouched = true"
+            [ngClass]="{'invalid-input': !validateEmail() && emailTouched}"
+            placeholder="Seu e-mail">
+          <small *ngIf="!validateEmail() && emailTouched" class="text-danger subtitulo">E-mail inválido.</small>
+        </div>
+
+        <!-- -------------------------------------------------------------------------- -->
+        <!--                          SCHOOL FIELD                                      -->
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
+          <label>Escola:</label>
+          <select class="form-control input" [(ngModel)]="schollId" name="school">
+            @for (escola of escolas; track $index){
+              <option [value]="escola.id">{{escola.name}}</option>
+            }
+          </select>
+        </div>
+
+        <!-- -------------------------------------------------------------------------- -->
+        <!--                          PASSWORD FIELD                                    -->
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
+          <label>Senha:</label>
+          <input
+            type="password"
+            name="password"
+            class="form-control input"
+            [(ngModel)]="password"
+            (focus)="passwordTouched = true"
+            [ngClass]="{'invalid-input': !validatePassword() && passwordTouched}"
+            placeholder="Digite sua senha">
+          <small *ngIf="!validatePassword() && passwordTouched" class="text-danger subtitulo">Senha inválida.</small>
+        </div>
+
+        <!-- -------------------------------------------------------------------------- -->
+        <!--                          CONFIRM PASSWORD FIELD                            -->
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="form-group col-12 col-md-6 col-lg-4 mt-2">
+          <label>Confirme sua Senha:</label>
+          <input
+            type="password"
+            name="passwordConfirm"
+            class="form-control input"
+            [(ngModel)]="passwordConfirm"
+            (focus)="passwordConfirmTouched = true"
+            [disabled]="!validatePassword()"
+            [ngClass]="{'invalid-input': !comparePasswords() && passwordConfirmTouched}"
+            placeholder="Confirme sua senha">
+          <small *ngIf="!comparePasswords() && passwordConfirmTouched" class="text-danger subtitulo">As senhas não coincidem.</small>
+        </div>
+
+        <!-- -------------------------------------------------------------------------- -->
+        <!--                          FORM BUTTONS                                      -->
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="d-flex justify-content-between col-12 col-md-6 col-lg-4 mt-3">
+          <button class="btn btn-primary btns" (click)="navigateToLogin()">Entrar</button>
+          <button class="btn btn-secondary btns" (click)="registrar()" [disabled]="!comparePasswords() || !validateEmail() || !validateName() || !validateBirthDate()">Cadastrar</button>
+        </div>
+      </form>
+    }
+  }
+
 </div>
