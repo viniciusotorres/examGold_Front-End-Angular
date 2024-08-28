@@ -1,8 +1,11 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
-import {Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 import {ThemeService} from "../../services/theme-service/theme.service";
+import {UsersService} from "../../services/users-service/users.service";
+import {filter} from "rxjs";
+import {AuthService} from "../../services/auth-service/auth.service";
 
 @Component({
   selector: 'app-side-bar',
@@ -18,6 +21,9 @@ export class SideBarComponent {
   isHoveredEscolas = false;
   isHoveredLogout = false;
   isHoveredDarkTheme = false;
+  isHoveredPerfil = false;
+  isHoveredDefinicoes = false;
+  isHoveredMinhaEscola = false;
 
 // --> VARIAVEL DE TIMEOUT DO HOVER
   hoverTimeout: any;
@@ -27,16 +33,56 @@ export class SideBarComponent {
   hoverEscolasPosition = { top: 0 };
   hoverLogoutPosition = { top: 0 };
   hoverDarkThemePosition = { top: 0 };
+  hoverPerfilPosition = { top: 0 };
+  hoverDefinicoesPosition = { top: 0 };
+  hoverMinhaEscolaPosition = { top: 0 };
 
 // --> VARIAVEIS DE REFERENCIA DO ELEMENTO
   @ViewChild('homeIcon', { static: false }) homeIcon!: ElementRef;
   @ViewChild('escolasIcon', { static: false }) escolasIcon!: ElementRef;
   @ViewChild('logoutIcon', { static: false }) logoutIcon!: ElementRef;
   @ViewChild('darkThemeIcon', { static: false }) darkModeIcon!: ElementRef;
+  @ViewChild('perfilIcon', { static: false }) perfilIcon!: ElementRef;
+  @ViewChild('definicoesIcon', { static: false }) definicoesIcon!: ElementRef;
+  @ViewChild('minhaEscolaIcon', { static: false }) minhaEscolaIcon!: ElementRef;
 
-  constructor(private router: Router, private themeService: ThemeService) {}
+  itsTeacher: string = 'teacher';
 
+  userId!: number;
 
+  constructor(
+    private router: Router,
+    private themeService: ThemeService,
+    private userService: UsersService,
+    private authService: AuthService) {}
+
+  ngOnInit() {
+    this.loadUserData();
+
+// Subscribe to router events to reinitialize the component on navigation
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.loadUserData();
+    });
+
+    // Subscribe to login events to reinitialize the component after login
+    this.authService.onLogin().subscribe(() => {
+      this.loadUserData();
+    });
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /*                    METODO DE CARREGAR OS DADOS DO USUARIO                   */
+  /* -------------------------------------------------------------------------- */
+  loadUserData() {
+    this.userId = +localStorage.getItem('userId')!;
+    if (this.userId) {
+      this.userService.getUserById(this.userId).subscribe((data: any) => {
+        this.itsTeacher = data.itsTeacher ? 'teacher' : 'student';
+      });
+    }
+  }
 
   /* -------------------------------------------------------------------------- */
   /*            FUNÇÃO DE ABRIR HOVER QUANDO O USUARIO PASSAR O MOUSE           */
@@ -63,6 +109,18 @@ export class SideBarComponent {
         this.isHoveredDarkTheme = true;
         this.setHoverPosition(this.darkModeIcon, 'darktheme');
         break;
+      case 'perfil':
+        this.isHoveredPerfil = true;
+        this.setHoverPosition(this.perfilIcon, 'perfil');
+        break;
+      case 'definicoes':
+        this.isHoveredDefinicoes = true;
+        this.setHoverPosition(this.definicoesIcon, 'definicoes');
+        break;
+      case 'minha-escola':
+        this.isHoveredMinhaEscola = true;
+        this.setHoverPosition(this.minhaEscolaIcon, 'minha-escola');
+        break;
     }
   }
 
@@ -71,6 +129,10 @@ export class SideBarComponent {
     this.isHoveredEscolas = false;
     this.isHoveredLogout = false;
     this.isHoveredDarkTheme = false;
+    this.isHoveredPerfil = false;
+    this.isHoveredDefinicoes = false;
+    this.isHoveredMinhaEscola = false
+
   }
 
   setHoverPosition(elementRef: ElementRef, icon: string) {
@@ -87,6 +149,15 @@ export class SideBarComponent {
         break;
       case 'darktheme':
         this.hoverDarkThemePosition = { top: rect.top };
+        break;
+      case 'perfil':
+        this.hoverPerfilPosition = { top: rect.top };
+        break;
+      case 'definicoes':
+        this.hoverDefinicoesPosition = { top: rect.top };
+        break;
+      case 'minha-escola':
+        this.hoverMinhaEscolaPosition = { top: rect.top };
         break;
     }
   }
@@ -110,6 +181,15 @@ export class SideBarComponent {
         case 'darktheme':
           this.isHoveredDarkTheme = false;
           break;
+        case 'perfil':
+          this.isHoveredPerfil = false;
+          break;
+        case 'definicoes':
+          this.isHoveredDefinicoes = false;
+          break
+        case 'minha-escola':
+          this.isHoveredMinhaEscola = false;
+          break
       }
       this.themeService.applyTheme();
     }, 300);
@@ -138,6 +218,15 @@ export class SideBarComponent {
       case 'darktheme':
         this.isHoveredDarkTheme = false;
         break;
+      case 'perfil':
+        this.isHoveredPerfil = false;
+        break;
+      case 'definicoes':
+        this.isHoveredDefinicoes = false;
+        break;
+      case 'minha-escola':
+        this.isHoveredMinhaEscola = false;
+        break
     }
     this.themeService.applyTheme();
   }
@@ -155,6 +244,7 @@ export class SideBarComponent {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
+    localStorage.removeItem('theme');
     this.router.navigate(['/login']);
   }
 

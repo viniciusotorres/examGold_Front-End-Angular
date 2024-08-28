@@ -35,3 +35,38 @@
   background: white !important;
   color: black !important;
 }
+
+.opcoes {
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  perspective: 1000px;
+  transform: rotateX(10deg);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.separator {
+  height: 30px;
+  width: 1px;
+  background-color: black;
+}
+
+.active {
+  background: rgb(249 106 0 / 95%) !important;
+  color: black !important;
+  transition: background 0.6s ease, transform 0.9s ease;
+  transform: scale(1.05);
+  border-radius: 5px;
+}
+
+.inactive {
+  background: black !important;
+  color: rgb(249 106 0 / 95%) !important;
+  transition: background 0.6s ease, transform 0.9s ease;
+  transform: scale(1.05);
+  border-radius: 5px;
+}
+

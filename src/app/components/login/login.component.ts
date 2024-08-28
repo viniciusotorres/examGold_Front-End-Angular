@@ -17,11 +17,14 @@ import {SharedsService} from "../../services/shareds-service/shareds.service";
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  itsTeacher: string = 'teacher'
+  teacher: boolean = true;
   email: string = '';
   emailTouched: boolean = false;
   password: string= '';
   passwordTouched: boolean = false;
   idUser: number = 0;
+
 
   constructor(
     private authService: AuthService,
@@ -35,7 +38,8 @@ export class LoginComponent {
  logar(){
     const user: UserInterface = {
       email: this.email,
-      password: this.password
+      password: this.password,
+      itsTeacher: this.itsTeacher === 'teacher'
    }
 
     this.authService.login(user).subscribe(
@@ -65,5 +69,18 @@ validateEmail(){
 validatePassword() {
   return this.password === '';
 }
+
+transformTeacher(){
+    this.itsTeacher = 'student';
+
+
+}
+
+transformStudent() {
+
+  this.itsTeacher = 'teacher';
+
+  }
+
 
 }

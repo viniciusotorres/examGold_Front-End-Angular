@@ -2,12 +2,15 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../enviroments/environments";
 import {UserInterface} from "../../interfaces/user.interface";
+import {Observable, Subject} from "rxjs";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  private loginSubject = new Subject<void>();
 
 
   private api = environment.apiJava;
@@ -26,8 +29,12 @@ export class AuthService {
     return this.http.post(`${this.api}/auth/register`, user);
   }
 
-  isLoggedIn(): boolean {
-    return !!localStorage.getItem('token');
+  notifyLogin(data: any) {
+    this.loginSubject.next();
+  }
+
+  onLogin(): Observable<void> {
+    return this.loginSubject.asObservable();
   }
 
 }
