@@ -1,0 +1,23 @@
+@import '../../styles/reponsive.scss';
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 7rem;
+  border-radius: 10px;
+  background: #ffffff !important;
+}
+
+@media (max-width: $--mq-phone) {
+  .cards {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-gap: 1rem !important;
+  }
+
+  .cards-1{
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+
