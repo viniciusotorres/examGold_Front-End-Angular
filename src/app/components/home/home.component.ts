@@ -9,7 +9,7 @@ import {AuthService} from "../../services/auth-service/auth.service";
   standalone: true,
   imports: [],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   userId: number = 0;
@@ -26,8 +26,6 @@ export class HomeComponent {
       this.authService.notifyLogin(data);
     });
   }
-
-
 
 
   //--> Método para deslogar o usuário
